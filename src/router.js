@@ -22,13 +22,16 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/recipe',
-      name: 'recipe',
+      path: '/dashboard',
       component: () => import('./views/RecipeDashboard.vue'),
       children: [
         {
-          path: '/recipe/:id',
-          component: () => import('./components/RecipeDetail.vue'),
+          path: 'recipe/create',
+          component: () => import('./components/CreateRecipe.vue')
+        },
+        {
+          path: 'recipe/:id',
+          component: () => import('./components/RecipeDetail.vue')
         }
       ]
     }

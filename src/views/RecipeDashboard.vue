@@ -1,10 +1,11 @@
 <template>
   <div class="recipe-dashboard">
+    <router-link to="/dashboard/recipe/create">Create a Recipe</router-link>
     <div class="recipe-sidebar">
       <h2>Recipe Sidebar</h2>
         <ul>
           <li v-for="recipe in recipes" :key="recipe._id">
-            <router-link :to="`/recipe/${recipe._id}`">{{recipe.title}}</router-link>
+            <router-link :to="`/dashboard/recipe/${recipe._id}`">{{recipe.title}}</router-link>
           </li>
         </ul>
     </div> 
@@ -13,7 +14,6 @@
 </template>
 
 <script>
-import RecipeDetail from "@/components/RecipeDetail";
 import { $http } from "@/http-common";
 
 export default {
