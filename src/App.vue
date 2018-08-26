@@ -28,7 +28,7 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <v-container fluid grid-list-lg>
+      <v-container class="recipe-container" fluid grid-list-lg>
         <router-view @loginSuccess="setAuthToken" />
       </v-container>
     </v-content>
@@ -72,5 +72,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#app .recipe-container {
+  max-width: 960px;
 }
 </style>

@@ -4,11 +4,11 @@
       v-for="recipe in recipes"
       :key="recipe._id"
       justify-start
-      lg3 md4 sm6 xs12
+      md4 sm6 xs12
       @click="goToRecipe(recipe._id)"
     >
       <v-card hover>
-        <v-card-media :src="recipe.img_url" height="300px" />
+        <v-card-media :src="recipe.img_url" height="225px" />
         <v-card-title primary-title>
             <h3 class="headline">{{recipe.title}}</h3>
         </v-card-title>

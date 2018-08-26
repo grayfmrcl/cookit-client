@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-flex xs12 sm8 md6 lg4>
+    <v-flex xs12 md6>
       <v-form>
         <v-text-field type="email" v-model="email" label="E-mail"></v-text-field>
         <v-text-field type="password" v-model="password" label="Password"></v-text-field>
