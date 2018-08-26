@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const $http = axios.create({
-  baseURL: `http://localhost:3000`,
+  baseURL: process.env.VUE_APP_API_BASE_URL,
   headers: {
-    Authorization: 'Bearer {token}'
+    Authorization: `Bearer ${localStorage.getItem('auth_token')}`
   }
 })
