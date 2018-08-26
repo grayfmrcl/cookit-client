@@ -4,6 +4,7 @@
       class="recipe__item"
       v-for="recipe in recipes"
       :key="recipe._id"
+      @click="goToPost(recipe._id)"
       >
       <img src="" alt="Recipe Image">
       <h5>Recipe Title</h5>
@@ -32,6 +33,9 @@ export default {
         .catch(err => {
           console.log(err.response.data);
         });
+    },
+    goToPost(post_id) {
+      this.$router.push("/recipes/" + post_id);
     }
   },
   created() {
