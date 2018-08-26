@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <h3>Login</h3>
-    <form @submit.prevent="onSubmit">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" v-model="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="password">
-      </div>
-      <button type="button" @click="login">Login</button>
-    </form>
-  </div>
+  <v-layout row wrap justify-center>
+    <v-flex xs12 sm8 md6 lg4>
+      <v-form>
+        <v-text-field type="email" v-model="email" label="E-mail"></v-text-field>
+        <v-text-field type="password" v-model="password" label="Password"></v-text-field>
+        <v-btn block color="primary" large @click="login">Login</v-btn>
+      </v-form>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -34,7 +29,6 @@ export default {
         })
         .then(res => {
           this.$emit("loginSuccess", { auth_token: res.data.auth_token });
-          this.$router.push("/");
         })
         .catch(err => {
           alert(err.response.data.error);

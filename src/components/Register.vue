@@ -1,22 +1,14 @@
 <template>
-  <div>
-    <h3>Register</h3>
-    <form @submit.prevent="onSubmit">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" v-model="name">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" v-model="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="password">
-      </div>
-      <button type="button" @click="register">Register</button>
-    </form>
-  </div>
+  <v-layout row wrap justify-center>
+    <v-flex xs12 sm8 md6 lg4>
+      <v-form>
+        <v-text-field v-model="name" label="Name"></v-text-field>
+        <v-text-field type="email" v-model="email" label="E-mail"></v-text-field>
+        <v-text-field type="password" v-model="password" label="Password"></v-text-field>
+        <v-btn block color="primary" large @click="register">Register</v-btn>
+      </v-form>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -42,7 +34,7 @@ export default {
         })
         .then(res => {
           console.log(res.data);
-          this.$router.push("/auth/login");
+          this.$router.push("/login");
         })
         .catch(err => {
           alert(err.response.data.error);

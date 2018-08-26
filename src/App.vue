@@ -1,13 +1,38 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Cook IT</router-link> |
-      <router-link v-if="isLogin" to="/dashboard">Dashboard</router-link> | 
-      <router-link v-if="!isLogin" to="/auth/login">Login</router-link> | 
-      <a v-if="isLogin" @click="logout" href="javascript:void(0)">Logout</a>
-    </div>
-    <router-view @login-success="isLogin=true" />
-  </div>
+  <v-app id="app">
+    <v-toolbar app dark color="primary">
+      <v-toolbar-items>
+        <v-btn to="/" flat>
+          <span class="title">Cook IT</span>
+        </v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn v-if="isLogin" to="/dashboard" flat>
+          Dashboard
+        </v-btn>
+
+        <v-divider vertical></v-divider>
+
+        <v-btn v-if="isLogin" @click="logout" flat>
+          Logout
+        </v-btn>
+        <v-btn v-if="!isLogin" to="/login" flat @login-success="setAuthToken">
+          Login
+        </v-btn>
+        <v-divider v-if="!isLogin" vertical></v-divider>
+        <v-btn v-if="!isLogin" to="/register" flat>
+          Register
+        </v-btn>
+        
+      </v-toolbar-items>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid>
+        <router-view @loginSuccess="setAuthToken" />
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -19,6 +44,11 @@ export default {
     };
   },
   methods: {
+    setAuthToken(payload) {
+      localStorage.setItem("auth_token", payload.auth_token);
+      this.isLogin = true;
+      this.$router.push("/");
+    },
     logout() {
       localStorage.removeItem("auth_token");
       this.isLogin = false;

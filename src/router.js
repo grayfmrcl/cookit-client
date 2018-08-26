@@ -19,21 +19,14 @@ export default new Router({
       component: () => import('./views/Dashboard.vue')
     },
     {
-      path: '/auth',
-      name: 'auth',
-      component: () => import('./views/Auth.vue'),
-      children: [
-        {
-          path: 'login',
-          name: 'login',
-          component: () => import('./components/Login.vue')
-        },
-        {
-          path: 'register',
-          name: 'register',
-          component: () => import('./components/Register.vue')
-        }
-      ]
+      path: '/login',
+      name: 'login',
+      component: () => import('./components/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./components/Register.vue')
     },
     {
       path: '/recipes/:id',
