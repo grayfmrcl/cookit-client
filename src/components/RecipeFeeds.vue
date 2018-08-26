@@ -42,7 +42,7 @@ export default {
         });
     },
     goToRecipe(recipe_id) {
-      this.$router.push("/recipes/" + recipe_id);
+      this.$router.push("/" + recipe_id);
     }
   },
   created() {

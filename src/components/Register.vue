@@ -5,7 +5,7 @@
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field type="email" v-model="email" label="E-mail"></v-text-field>
         <v-text-field type="password" v-model="password" label="Password"></v-text-field>
-        <v-btn block color="primary" large @click="register">Register</v-btn>
+        <v-btn block dark color="orange darken-2" large @click="register">Register</v-btn>
       </v-form>
     </v-flex>
   </v-layout>

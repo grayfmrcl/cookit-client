@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-toolbar app dark color="primary">
+    <v-toolbar app dark color="deep-orange">
       <v-toolbar-items>
         <v-btn to="/" flat>
           <span class="title">Cook IT</span>
