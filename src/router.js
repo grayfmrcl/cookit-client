@@ -34,6 +34,11 @@ export default new Router({
           component: () => import('./components/Register.vue')
         }
       ]
+    },
+    {
+      path: '/recipes/:id',
+      name: 'recipe_post',
+      component: () => import('./views/Post.vue')
     }
   ]
 })
