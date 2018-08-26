@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>Cook IT</h1>
     <RecipeFeeds />
   </div>
 </template>
