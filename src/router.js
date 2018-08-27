@@ -20,18 +20,13 @@ export default new Router({
       children: [
         {
           path: 'post/:id',
-          name: 'post',
+          name: 'selectPost',
           component: () => import('./components/DashboardRecipe')
         },
         {
-          path: 'post/add',
-          name: 'post/add',
-          component: () => import('./components/UpdateRecipe')
-        },
-        {
-          path: 'post/edit/:id',
-          name: 'post/edit',
-          component: () => import('./components/UpdateRecipe')
+          path: 'post/',
+          name: 'addPost',
+          component: () => import('./components/DashboardRecipe')
         }
       ]
     },

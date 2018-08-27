@@ -59,11 +59,6 @@
             </v-list-tile>
           </template>
         </v-list>
-        <v-divider></v-divider>
-        <v-card-text>
-          Notes:
-          <p>{{recipe.notes}}</p>
-        </v-card-text>
       </v-card>
 </template>
 

@@ -5,26 +5,16 @@
           <v-toolbar color="orange" dark>
           <v-toolbar-title>Your Recipes</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon dark flat>
+          <v-btn icon dark flat to="/dashboard/post/">
             <v-icon>add</v-icon>
           </v-btn>
         </v-toolbar>
         <v-list>
           <template v-for="recipe in recipes">
-            <v-list-tile :key="recipe._id" :to="{ name: 'post', params:{ id: recipe._id } }">
+            <v-list-tile :key="recipe._id" :to="{ name: 'selectPost', params:{ id: recipe._id } }">
               <v-list-tile-content>
                 <v-list-tile-title class="text--white">{{ recipe.title }}</v-list-tile-title>
               </v-list-tile-content>
-              <v-list-tile-action>
-                <v-btn color="orange" dark icon>
-                  <v-icon>edit</v-icon>
-                </v-btn>
-              </v-list-tile-action>
-              <v-list-tile-action>
-                <v-btn color="orange" dark icon>
-                  <v-icon>delete</v-icon>
-                </v-btn>
-              </v-list-tile-action>
             </v-list-tile>
           </template>
         </v-list>
@@ -32,7 +22,7 @@
         </v-card>
     </v-flex>
     <v-flex xs8>
-      <router-view></router-view>
+      <router-view @recipeChanged="fetchRecipes"></router-view>
     </v-flex>
   </v-layout>
 </template>
