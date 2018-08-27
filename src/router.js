@@ -16,27 +16,32 @@ export default new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('./views/Dashboard.vue')
-    },
-    {
-      path: '/auth',
-      name: 'auth',
-      component: () => import('./views/Auth.vue'),
+      component: () => import('./views/Dashboard.vue'),
       children: [
         {
-          path: 'login',
-          name: 'login',
-          component: () => import('./components/Login.vue')
+          path: 'post/:id',
+          name: 'selectPost',
+          component: () => import('./components/DashboardRecipe')
         },
         {
-          path: 'register',
-          name: 'register',
-          component: () => import('./components/Register.vue')
+          path: 'post/',
+          name: 'addPost',
+          component: () => import('./components/DashboardRecipe')
         }
       ]
     },
     {
-      path: '/recipes/:id',
+      path: '/login',
+      name: 'login',
+      component: () => import('./components/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./components/Register.vue')
+    },
+    {
+      path: '/:id',
       name: 'recipe_post',
       component: () => import('./views/Post.vue')
     }

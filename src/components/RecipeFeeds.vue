@@ -1,17 +1,22 @@
 <template>
-  <div class="recipe__feeds">
-     <div
-      class="recipe__item"
+  <v-layout row wrap>
+    <v-flex
       v-for="recipe in recipes"
       :key="recipe._id"
-      @click="goToPost(recipe._id)"
-      >
-      <img src="" alt="Recipe Image">
-      <h5>Recipe Title</h5>
-      <p>Recipe Detail</p>
-      <p>Author</p>
-  </div>
-  </div>
+      justify-start
+      md4 sm6 xs12
+      @click="goToRecipe(recipe._id)"
+    >
+      <v-card hover>
+        <v-card-media :src="recipe.img_url" height="225px" />
+        <v-flex xs12 flexbox justify-center>
+          <div class="headline font-weight-bold">{{recipe.title}}</div>
+          <div class="subheading font-weight-thin font-italic">{{recipe.description}}</div>
+          <div class="caption">by <span class="font-weight-bold">{{recipe.user.name}}</span></div>
+        </v-flex>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -34,8 +39,8 @@ export default {
           console.log(err.response.data);
         });
     },
-    goToPost(post_id) {
-      this.$router.push("/recipes/" + post_id);
+    goToRecipe(recipe_id) {
+      this.$router.push("/" + recipe_id);
     }
   },
   created() {
