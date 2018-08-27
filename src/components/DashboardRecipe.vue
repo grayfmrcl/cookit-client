@@ -180,7 +180,7 @@ export default {
     },
     addRecipe() {
       $http
-        .post("http://localhost:3000/recipes/", this.recipe, {
+        .post("/recipes/", this.recipe, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("auth_token")}`
           }
@@ -194,7 +194,7 @@ export default {
     },
     updateRecipe() {
       $http
-        .put("http://localhost:3000/recipes/" + this.recipe._id, this.recipe, {
+        .put("/recipes/" + this.recipe._id, this.recipe, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("auth_token")}`
           }
@@ -208,7 +208,7 @@ export default {
     },
     deleteRecipe() {
       $http
-        .delete("http://localhost:3000/recipes/" + this.recipe._id, {
+        .delete("/recipes/" + this.recipe._id, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("auth_token")}`
           }
