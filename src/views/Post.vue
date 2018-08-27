@@ -1,5 +1,12 @@
 <template>
-  <RecipeContent />
+  <v-layout row wrap>
+    <v-flex xs8>
+      <RecipeContent />
+    </v-flex>
+    <v-flex xs4>
+      <CommentSection />
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

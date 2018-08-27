@@ -9,13 +9,11 @@
     >
       <v-card hover>
         <v-card-media :src="recipe.img_url" height="225px" />
-        <v-card-title primary-title>
-            <h3 class="headline">{{recipe.title}}</h3>
-        </v-card-title>
-        <v-card-text>
-          <div class="subheading text-left-xs">{{recipe.description}}</div>
+        <v-flex xs12 flexbox justify-center>
+          <div class="headline font-weight-bold">{{recipe.title}}</div>
+          <div class="subheading font-weight-thin font-italic">{{recipe.description}}</div>
           <div class="caption">by <span class="font-weight-bold">{{recipe.user.name}}</span></div>
-        </v-card-text>
+        </v-flex>
       </v-card>
     </v-flex>
   </v-layout>

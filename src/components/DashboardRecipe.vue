@@ -17,11 +17,11 @@
     <v-layout row wrap>
       <v-flex xs12>
       <v-card-title primary-title>
-        <v-flex xs12>
+        <v-flex xs12 flexbox justify-center>
           <v-text-field v-if="updateMode" label="Title" v-model="recipe.title"></v-text-field>
           <h5 v-else class="headline font-weight-bold">{{recipe.title}}</h5>
         </v-flex>
-        <v-flex xs12>
+        <v-flex xs12 justify-center>
           <v-textarea v-if="updateMode" label="Description" v-model="recipe.description"></v-textarea>
           <span v-else class="subheading font-weight-thin font-italic">{{recipe.description}}</span>
         </v-flex>
@@ -39,7 +39,7 @@
       <template v-for="(ingredient, index) in recipe.ingredients">
         <v-list-tile :key="index">
           <v-list-tile-content>
-            <v-list-tile-title v-html="ingredient"></v-list-tile-title>
+            <v-list-tile-title>{{index+1}}. {{ingredient}}</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action v-if="updateMode">
             <v-btn color="orange" dark icon @click="deleteIngredient(index)">
@@ -73,7 +73,7 @@
       <template v-for="(direction, index) in recipe.directions">
         <v-list-tile :key="index">
           <v-list-tile-content>
-            <v-list-tile-title v-html="direction"></v-list-tile-title>
+            <v-list-tile-title>{{index+1}}. {{direction}}</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action v-if="updateMode">
             <v-btn color="orange" dark icon @click="deleteDirection(index)">
@@ -143,7 +143,11 @@ export default {
   methods: {
     fetchRecipe() {
       $http
-        .get("/recipes/" + this.$route.params.id)
+        .get("/recipes/" + this.$route.params.id, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+          }
+        })
         .then(res => {
           this.recipe = res.data;
         })
@@ -176,7 +180,11 @@ export default {
     },
     addRecipe() {
       $http
-        .post("http://localhost:3000/recipes/", this.recipe)
+        .post("http://localhost:3000/recipes/", this.recipe, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+          }
+        })
         .then(res => {
           this.updateMode = false;
           this.$emit("recipeChanged");
@@ -186,7 +194,11 @@ export default {
     },
     updateRecipe() {
       $http
-        .put("http://localhost:3000/recipes/" + this.recipe._id, this.recipe)
+        .put("http://localhost:3000/recipes/" + this.recipe._id, this.recipe, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+          }
+        })
         .then(res => {
           this.updateMode = false;
           this.$emit("recipeChanged");
@@ -196,7 +208,11 @@ export default {
     },
     deleteRecipe() {
       $http
-        .delete("http://localhost:3000/recipes/" + this.recipe._id)
+        .delete("http://localhost:3000/recipes/" + this.recipe._id, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+          }
+        })
         .then(res => {
           this.updateMode = false;
           this.$emit("recipeChanged");

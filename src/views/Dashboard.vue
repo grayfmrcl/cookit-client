@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs4>
+    <v-flex xs12 sm4>
         <v-card>
           <v-toolbar color="orange" dark>
           <v-toolbar-title>Your Recipes</v-toolbar-title>
@@ -17,11 +17,15 @@
               </v-list-tile-content>
             </v-list-tile>
           </template>
+          <v-list-tile v-if="recipes.length <= 0">
+            <v-list-tile-content>
+              <v-list-tile-sub-title class="font-italic">No recipes yet.</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
         </v-list>
-          
         </v-card>
     </v-flex>
-    <v-flex xs8>
+    <v-flex xs12 sm8>
       <router-view @recipeChanged="fetchRecipes"></router-view>
     </v-flex>
   </v-layout>
@@ -44,7 +48,11 @@ export default {
   methods: {
     fetchRecipes() {
       $http
-        .get("/recipes")
+        .get("/recipes/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+          }
+        })
         .then(res => {
           this.recipes = res.data;
         })

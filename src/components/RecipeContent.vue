@@ -3,30 +3,11 @@
       <v-card>
         <v-card-media :src="recipe.img_url" height="300px" />
         <v-layout row wrap>
-          <v-flex xs12 md6>
-          <v-card-title primary-title>
-            <div>
-              <div class="headline font-weight-bold">{{recipe.title}}</div>
-              <span class="subheading font-weight-thin font-italic">{{recipe.description}}</span>
-            </div>
-          </v-card-title>
-        </v-flex>
-        <v-flex xs12 md6>
-          <v-card-actions>
-            <v-flex xs3>
-              <v-btn dark color="orange">Facebook</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Twitter</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Pinterest</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Google+</v-btn>
-            </v-flex>
-          </v-card-actions>
-        </v-flex>
+          <v-flex xs12 flexbox justify-center>
+            <div class="headline font-weight-bold">{{recipe.title}}</div>
+            <div class="subheading font-weight-thin font-italic">{{recipe.description}}</div>
+            <div class="caption">by <span class="font-weight-bold">{{recipe.user.name}}</span></div>
+          </v-flex>
         </v-layout>
         <v-divider></v-divider>
         <v-card-title primary-title>
@@ -36,7 +17,7 @@
           <template v-for="(ingredient, index) in recipe.ingredients">
             <v-list-tile :key="index">
               <v-list-tile-content>
-                <v-list-tile-title v-html="ingredientToString(ingredient)"></v-list-tile-title>
+                <v-list-tile-title>{{index+1}}. {{ingredient}}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </template>
@@ -54,7 +35,7 @@
           <template v-for="(direction, index) in recipe.directions">
             <v-list-tile :key="index">
               <v-list-tile-content>
-                <v-list-tile-title v-html="direction"></v-list-tile-title>
+                <v-list-tile-title>{{index+1}}. {{direction}}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </template>
@@ -72,15 +53,6 @@ export default {
     };
   },
   methods: {},
-  computed: {
-    ingredientToString() {
-      return function(ingredient) {
-        return `${ingredient.amount || ""} 
-        ${ingredient.unit ? `${ingredient.unit} of` : ""}
-        ${ingredient.name}`;
-      };
-    }
-  },
   created() {
     $http
       .get("/recipes/" + this.$route.params.id)
