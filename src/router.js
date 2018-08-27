@@ -16,7 +16,24 @@ export default new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('./views/Dashboard.vue')
+      component: () => import('./views/Dashboard.vue'),
+      children: [
+        {
+          path: 'post/:id',
+          name: 'post',
+          component: () => import('./components/DashboardRecipe')
+        },
+        {
+          path: 'post/add',
+          name: 'post/add',
+          component: () => import('./components/UpdateRecipe')
+        },
+        {
+          path: 'post/edit/:id',
+          name: 'post/edit',
+          component: () => import('./components/UpdateRecipe')
+        }
+      ]
     },
     {
       path: '/login',

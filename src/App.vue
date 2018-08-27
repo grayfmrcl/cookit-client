@@ -74,6 +74,6 @@ export default {
   margin-top: 60px;
 }
 #app .recipe-container {
-  max-width: 960px;
+  max-width: 1024px;
 }
 </style>

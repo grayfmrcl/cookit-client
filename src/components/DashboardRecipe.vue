@@ -1,31 +1,14 @@
 <template>
-  
-      <v-card>
+  <v-card>
         <v-card-media :src="recipe.img_url" height="300px" />
         <v-layout row wrap>
-          <v-flex xs12 md6>
+          <v-flex xs12>
           <v-card-title primary-title>
             <div>
               <div class="headline font-weight-bold">{{recipe.title}}</div>
               <span class="subheading font-weight-thin font-italic">{{recipe.description}}</span>
             </div>
           </v-card-title>
-        </v-flex>
-        <v-flex xs12 md6>
-          <v-card-actions>
-            <v-flex xs3>
-              <v-btn dark color="orange">Facebook</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Twitter</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Pinterest</v-btn>
-            </v-flex>
-            <v-flex xs3>
-              <v-btn dark color="orange">Google+</v-btn>
-            </v-flex>
-          </v-card-actions>
         </v-flex>
         </v-layout>
         <v-divider></v-divider>
@@ -68,15 +51,25 @@
 </template>
 
 <script>
-import { $http } from "@/http-common.js";
+import { $http } from "@/http-common";
+
 export default {
-  name: "RecipeContent",
+  name: "DashboardRecipe",
   data() {
     return {
       recipe: {}
     };
   },
-  methods: {},
+  methods: {
+    fetchRecipe(recipe_id) {
+      $http
+        .get("/recipes/" + recipe_id)
+        .then(res => {
+          this.recipe = res.data;
+        })
+        .catch(err => console.log(err.response.data));
+    }
+  },
   computed: {
     ingredientToString() {
       return function(ingredient) {
@@ -87,12 +80,12 @@ export default {
     }
   },
   created() {
-    $http
-      .get("/recipes/" + this.$route.params.id)
-      .then(res => {
-        this.recipe = res.data;
-      })
-      .catch(err => console.log(err.response.data));
+    this.fetchRecipe(this.$route.params.id);
+  },
+  watch: {
+    $route() {
+      this.fetchRecipe(this.$route.params.id);
+    }
   }
 };
 </script>
